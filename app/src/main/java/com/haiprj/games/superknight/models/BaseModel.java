@@ -1,5 +1,8 @@
 package com.haiprj.games.superknight.models;
 
+import android.graphics.Canvas;
+import android.graphics.RectF;
+
 public abstract class BaseModel {
     protected String name;
     protected int width;
@@ -7,8 +10,8 @@ public abstract class BaseModel {
     protected float x;
     protected float y;
     protected int[] imageId;
-    protected float worldX = 0f;
-    protected float worldY = 0f;
+    protected float worldX;
+    protected float worldY;
 
     public BaseModel(String name, int width, int height, float x, float y, int... imageId) {
         this.name = name;
@@ -86,5 +89,21 @@ public abstract class BaseModel {
 
     public void setWorldY(float worldY) {
         this.worldY = worldY;
+    }
+
+    public void draw(Canvas canvas){
+
+    }
+
+    public void update() {
+
+    }
+    public RectF getRect() {
+        return new RectF(
+                this.x,
+                this.y,
+                this.x + this.width,
+                this.y + this.height
+        );
     }
 }

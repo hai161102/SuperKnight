@@ -7,20 +7,26 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/knight_animations"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperKnight"
         tools:targetApi="31">
         <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.haiprj.games.superknight.ui.activity.GameActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name="com.haiprj.games.superknight.ui.activity.CreateMapActivity"
+            android:screenOrientation="landscape"/>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="${APP_ID}"/>

@@ -25,34 +25,6 @@ public abstract class BaseGameSurface extends SurfaceView implements SurfaceHold
 
     protected GameThread gameThread;
 
-    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            Canvas canvas = null;
-
-            try
-            {
-                canvas = getHolder().lockCanvas(null);
-                synchronized (getHolder())
-                {
-                    if (!isGameOver) {
-                        update();
-                    }
-                    invalidate();
-                }
-                postDelayed(this, 1000 / FPS);
-
-            } finally
-            {
-                if (canvas != null)
-                {
-                    getHolder().unlockCanvasAndPost(canvas);
-                }
-            }
-
-        }
-    };
-
     public BaseGameSurface(Context context) {
         super(context);
         init();
@@ -200,7 +172,7 @@ public abstract class BaseGameSurface extends SurfaceView implements SurfaceHold
     }
 
     protected void onTouchMove(View view, MotionEvent event) {
-
+        Log.d("TouchListener", "onTouchMove: Moving");
     }
 
     protected void onTouchDown(View view, MotionEvent event) {

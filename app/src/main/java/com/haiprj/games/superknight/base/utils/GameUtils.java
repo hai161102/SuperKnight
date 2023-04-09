@@ -2,6 +2,7 @@ package com.haiprj.games.superknight.base.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 
 import com.google.gson.Gson;
 
@@ -78,5 +79,11 @@ public class GameUtils {
     public static <T> T getFromJson(String jsonString, Class<T> anoClass) {
         Gson gson = new Gson();
         return gson.fromJson(jsonString, anoClass);
+    }
+
+    public static Bitmap createFlippedBitmap(Bitmap source, boolean xFlip, boolean yFlip) {
+        Matrix matrix = new Matrix();
+        matrix.postScale(xFlip ? -1 : 1, yFlip ? -1 : 1, source.getWidth() / 2f, source.getHeight() / 2f);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }

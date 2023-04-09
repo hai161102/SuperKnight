@@ -8,12 +8,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     protected void initView() {
-        binding.gameSurface.startThread();
     }
 
     @Override
     protected void addEvent() {
-
+        binding.startGame.setOnClickListener(v -> {
+            GameActivity.start(this);
+        });
+        binding.createMap.setOnClickListener(v -> CreateMapActivity.start(this));
     }
 
     @Override
