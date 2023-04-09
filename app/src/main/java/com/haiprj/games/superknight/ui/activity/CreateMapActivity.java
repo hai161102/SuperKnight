@@ -9,6 +9,7 @@ import com.haiprj.games.superknight.databinding.ActivityCreateMapBinding;
 import com.haiprj.games.superknight.models.ImageItemModel;
 import com.haiprj.games.superknight.ui.adpater.ImageChooserAdapter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class CreateMapActivity extends BaseActivity<ActivityCreateMapBinding> {
     }
     @Override
     protected void initView() {
+        binding.createMap.startThread();
         adapter = new ImageChooserAdapter(this);
 
         binding.rcvImage.setAdapter(adapter);
@@ -33,8 +35,11 @@ public class CreateMapActivity extends BaseActivity<ActivityCreateMapBinding> {
             @Override
             public void onClick(String action, Object... objects) {
                 ImageItemModel model = (ImageItemModel) objects[0];
-
+                binding.createMap.setCurrentModel(model);
             }
+        });
+        binding.btnSave.setOnClickListener(v -> {
+            binding.createMap.writeFileTo(new File(""));
         });
     }
 

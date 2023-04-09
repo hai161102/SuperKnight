@@ -73,11 +73,19 @@ public class ImageChooserAdapter extends RecyclerView.Adapter<ImageChooserAdapte
             binding.numberImage.setText(String.format("%d", model.getImageNumber()));
             binding.layoutItem.setSelected(model.isChoose());
             binding.getRoot().setOnClickListener(v -> {
-                onItemClickListener.onClick("Click", model);
+                if (model.isChoose()) {
+                    model.setChoose(false);
+                    onItemClickListener.onClick("Click", (Object) null);
+                    notifyItemChanged(getPosition());
+                    return;
+                }
+
                 list.forEach(m -> {
                     m.setChoose(false);
                 });
                 list.get(getPosition()).setChoose(true);
+                onItemClickListener.onClick("Click", model);
+
                 notifyDataSetChanged();
             });
         }
